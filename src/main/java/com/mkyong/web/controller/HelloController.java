@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@RestController
 public class HelloController {
 
+	@RequestMapping(value = "/ban/{name}", method = RequestMethod.GET)
+	private User getUsers(@PathVariable("name") String name)
+	{
+		return userService.getUserByName(name);
+	}
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
